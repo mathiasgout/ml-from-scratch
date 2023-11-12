@@ -13,49 +13,39 @@ On suppose :
 avec $\mu_{0}, \dots, \mu_{m-1} \in \mathbb{R}^{p}$ et $\Sigma_{0}, \dots, \Sigma_{m-1} \in \mathbb{R}^{p \times p}$ des matrices de covariance (donc symétriques) non dégénérées (déterminants strictement positifs).
 
 On note, $\forall c \in \{0, \dots, m-1\}$ et $\forall x \in \mathbb{R}^{p}$ :
-$$ f_c(x; \mu_c, \Sigma_c) = \mathbb{P}(X = x \mid y = c) = \frac{1}{(2 \pi)^{p/2} \lvert \Sigma_c \lvert ^{1/2}} \text{exp}(-\frac{1}{2}(x-\mu_c)^{T} \Sigma_c^{-1} (x-\mu_c)).$$
+$$f_c(x; \mu_c, \Sigma_c) = \mathbb{P}(X = x \mid y = c) = \frac{1}{(2 \pi)^{p/2} \lvert \Sigma_c \lvert ^{1/2}} \text{exp}(-\frac{1}{2}(x-\mu_c)^{T} \Sigma_c^{-1} (x-\mu_c)).$$
 
 la densité de la loi $\mathcal{N}(\mu_{c}, \Sigma_{c})$.
 
 On note aussi : $$\pi_c = {\mathbb{P}(y = c)}.$$
 
 Et on sait que :
-$$
-\begin{align*}
+$$\begin{align*}
     \mathbb{P}(X = x) 
     &= \sum\limits_{k=0}^{m-1} \mathbb{P}(y=k) \mathbb{P}(X=x \mid y = k). \\[10pt]
     & = \sum\limits_{k=0}^{m-1} \pi_k f_k(x; \mu_k, \Sigma_k).\\
-\end{align*}
-$$
+\end{align*}$$
 
 Et donc, d'après le [**théorème de Bayes**](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Bayes), on sait que :
-$$
-\begin{align*}
+$$\begin{align*}
     &
     \mathbb{P}(X = x \mid y = c) = \frac{\mathbb{P}(y = c \mid X = x) \mathbb{P}(X = x)}{\mathbb{P}(y = c)}.
     \\[15pt]
     \Longleftrightarrow \hspace{3mm} &
     \mathbb{P}(y = c \mid X = x) = \frac{\mathbb{P}(X = x \mid y = c) \mathbb{P}(y = c)}{\mathbb{P}(X = x)}.
-\end{align*}
-$$
+\end{align*}$$
 
 D'où :
-$$
-\mathbb{P}(y = c \mid X = x) = \frac{\pi_c f_c(x; \mu_c, \Sigma_c)}{ \sum\limits_{k=0}^{m-1} \pi_k f_k(x; \mu_k, \Sigma_k)}.
-$$  
+$$\mathbb{P}(y = c \mid X = x) = \frac{\pi_c f_c(x; \mu_c, \Sigma_c)}{ \sum\limits_{k=0}^{m-1} \pi_k f_k(x; \mu_k, \Sigma_k)}.$$  
 
 Il suffit maintenant d'estimer les paramètres, $\pi_c =  {\mathbb{P}(y = c)}$, $\mu_c$ et $\Sigma_c$ pour pouvoir calculer un estimateur de $\mathbb{P}(y = c \mid X = x)$ : 
 
-$$
-\hat{\mathbb{P}}(y = c \mid X = x) = \frac{\hat{\pi}_c f_c(x; \hat{\mu}_c, \hat{\Sigma}_c)}{ \sum\limits_{k=0}^{m-1} \hat{\pi}_k f_k(x; \hat{\mu}_k, \hat{\Sigma}_k)}.
-$$
+$$\hat{\mathbb{P}}(y = c \mid X = x) = \frac{\hat{\pi}_c f_c(x; \hat{\mu}_c, \hat{\Sigma}_c)}{ \sum\limits_{k=0}^{m-1} \hat{\pi}_k f_k(x; \hat{\mu}_k, \hat{\Sigma}_k)}.$$
 
 ## Linear Discriminant Analysis (LDA)
 
 Dans le cas de la **LDA**, on restreint le modèle à des gaussiennes de même matrice de covariance, c'est à dire que :
-$$
-\Sigma_0 = \Sigma_1 = \dots = \Sigma_{m-1} = \Sigma.
-$$
+$$\Sigma_0 = \Sigma_1 = \dots = \Sigma_{m-1} = \Sigma.$$
 
 Comme, $\forall c \in \{0, \dots, m-1\}$, 
 - $\pi_c \in \mathbb{R} \Longrightarrow$ $m-1$ paramètres (car $\sum\limits_{k=0}^{m-1} \pi_k = n$, donc pas besoin d'estimer le dernier).
@@ -69,9 +59,7 @@ Alors, on doit estimer : $(m-1) + mp + \frac{p(p+1)}{2}$ paramètres.
 On note $N_c = \sum\limits_{i=1}^{n} \mathbb{1}_{y=c}$, on a donc $\sum\limits_{c=0}^{m-1} N_c = n$.
 
 On estime $\pi_c = \mathbb{P}(y = c)$ par :
-$$
-\hat{\pi}_c = \frac{N_c}{n}.
-$$
+$$\hat{\pi}_c = \frac{N_c}{n}.$$
 
 C'est la proportion de $y=c$ dans notre notre échantillon.
 
@@ -85,9 +73,7 @@ On note :
 Le maximum de vraisemblance et la methode des moments
 donnent les mêmes estimateurs :
 
-$$
-\hat{\mu}_{c} = \frac{1}{N_c} \sum\limits_{i=1}^{n} X_i \mathbb{1}_{y=c}.
-$$
+$$\hat{\mu}_{c} = \frac{1}{N_c} \sum\limits_{i=1}^{n} X_i \mathbb{1}_{y=c}.$$
 
 C'est la moyenne empirique quand $y=c$.
 
@@ -102,9 +88,7 @@ On rappelle que :
 
 L'estimateurs de $\Sigma$ est donc :
 
-$$
-\hat{\Sigma} = \frac{1}{n-m} \sum\limits_{c=0}^{m-1} \left[ \sum\limits_{i=1}^{n} \mathbb{1}_{y=c} \left( X_i - \hat{\mu}_c \right) \left( X_i - \hat{\mu}_c \right)^T \right].
-$$
+$$\hat{\Sigma} = \frac{1}{n-m} \sum\limits_{c=0}^{m-1} \left[ \sum\limits_{i=1}^{n} \mathbb{1}_{y=c} \left( X_i - \hat{\mu}_c \right) \left( X_i - \hat{\mu}_c \right)^T \right].$$
 
 Chacune des valeurs de l'estimation de $\mu_c$ est prise en compte dans l'estimateur.
 
@@ -112,17 +96,13 @@ Chacune des valeurs de l'estimation de $\mu_c$ est prise en compte dans l'estima
 
 On a :
 
-$$
-\begin{align*}
+$$\begin{align*}
 \hat{\mathbb{P}}(y = c \mid X = x) 
 &= \frac{\hat{\pi}_c f_c(x; \hat{\mu}_c, \hat{\Sigma}_c)}{ \sum\limits_{k=0}^{m-1} \hat{\pi}_k f_k(x; \hat{\mu}_k, \hat{\Sigma}_k)}. \\
 
 &= \frac{\frac{\hat{\pi}_c}{(2 \pi)^{p/2} \lvert \hat{\Sigma} \lvert ^{1/2}} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_c)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_c))}{\sum\limits_{k=0}^{m-1} \frac{\hat{\pi}_k}{(2 \pi)^{p/2} \lvert \hat{\Sigma} \lvert ^{1/2}} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_k)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_k))}.
-\end{align*}
-$$
+\end{align*}$$
 
 Et donc, notre estimateur **LDA** de $P( y=c \mid X=x)$ est :
 
-$$
-\hat{\mathbb{P}}(y = c \mid X = x)  = \frac{\hat{\pi}_c \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_c)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_c))}{\sum\limits_{k=0}^{m-1} \hat{\pi}_k \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_k)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_k))}.
-$$
+$$\hat{\mathbb{P}}(y = c \mid X = x)  = \frac{\hat{\pi}_c \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_c)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_c))}{\sum\limits_{k=0}^{m-1} \hat{\pi}_k \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_k)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_k))}.$$
