@@ -94,7 +94,6 @@ On rappelle que :
 - $y \in \{0, \dots, m-1\}$, $m$ classes.
 
 L'estimateurs de $\Sigma$ est donc :
-
 $$\hat{\Sigma} = \frac{1}{n-m} \sum\limits_{c=0}^{m-1} \left[ \sum\limits_{i=1}^{n} \mathbb{1}_{y=c} \left( X_i - \hat{\mu}_c \right) \left( X_i - \hat{\mu}_c \right)^T \right].$$
 
 Chacune des valeurs de l'estimation de $\mu_c$ est prise en compte dans l'estimateur.
@@ -103,13 +102,11 @@ Chacune des valeurs de l'estimation de $\mu_c$ est prise en compte dans l'estima
 
 On a :
 
-$$
-\begin{align*}
+$$\begin{align*}
 \hat{\mathbb{P}}(y = c \mid X = x) 
 &= \frac{\hat{\pi}_c f_c(x; \hat{\mu}_c, \hat{\Sigma}_c)}{ \sum\limits_{k=0}^{m-1} \hat{\pi}_k f_k(x; \hat{\mu}_k, \hat{\Sigma}_k)}. \\
 &= \frac{\frac{\hat{\pi}_c}{(2 \pi)^{p/2} \lvert \hat{\Sigma} \lvert ^{1/2}} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_c)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_c))}{\sum\limits_{k=0}^{m-1} \frac{\hat{\pi}_k}{(2 \pi)^{p/2} \lvert \hat{\Sigma} \lvert ^{1/2}} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_k)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_k))}.
-\end{align*}
-$$
+\end{align*}$$
 
 Et donc, notre estimateur **LDA** de $P( y=c \mid X=x)$ est :
 $$\hat{\mathbb{P}}(y = c \mid X = x)  = \frac{\hat{\pi}_c \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_c)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_c))}{\sum\limits_{k=0}^{m-1} \hat{\pi}_k \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_k)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_k))}.$$
