@@ -20,6 +20,7 @@ la densité de la loi $\mathcal{N}(\mu_{c}, \Sigma_{c})$.
 On note aussi : $$\pi_c = {\mathbb{P}(y = c)}.$$
 
 Et on sait que :
+
 $$
 \begin{align*}
     \mathbb{P}(X = x) 
@@ -29,6 +30,7 @@ $$
 $$
 
 Et donc, d'après le [**théorème de Bayes**](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Bayes), on sait que :
+
 $$
 \begin{align*}
     &
@@ -100,16 +102,14 @@ Chacune des valeurs de l'estimation de $\mu_c$ est prise en compte dans l'estima
 ### Estimateur LDA de $P( y=1 \mid X=x)$
 
 On a :
+
 $$
 \begin{align*}
 \hat{\mathbb{P}}(y = c \mid X = x) 
 &= \frac{\hat{\pi}_c f_c(x; \hat{\mu}_c, \hat{\Sigma}_c)}{ \sum\limits_{k=0}^{m-1} \hat{\pi}_k f_k(x; \hat{\mu}_k, \hat{\Sigma}_k)}. \\
-
 &= \frac{\frac{\hat{\pi}_c}{(2 \pi)^{p/2} \lvert \hat{\Sigma} \lvert ^{1/2}} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_c)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_c))}{\sum\limits_{k=0}^{m-1} \frac{\hat{\pi}_k}{(2 \pi)^{p/2} \lvert \hat{\Sigma} \lvert ^{1/2}} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_k)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_k))}.
 \end{align*}
 $$
 
 Et donc, notre estimateur **LDA** de $P( y=c \mid X=x)$ est :
-$$
-\hat{\mathbb{P}}(y = c \mid X = x)  = \frac{\hat{\pi}_c \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_c)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_c))}{\sum\limits_{k=0}^{m-1} \hat{\pi}_k \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_k)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_k))}.
-$$
+$$\hat{\mathbb{P}}(y = c \mid X = x)  = \frac{\hat{\pi}_c \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_c)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_c))}{\sum\limits_{k=0}^{m-1} \hat{\pi}_k \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_k)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_k))}.$$
