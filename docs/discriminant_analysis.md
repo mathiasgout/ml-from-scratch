@@ -40,9 +40,7 @@ $$
 $$
 
 D'où :
-$$
-\mathbb{P}(y = c \mid X = x) = \frac{\pi_c f_c(x; \mu_c, \Sigma_c)}{ \sum\limits_{k=0}^{m-1} \pi_k f_k(x; \mu_k, \Sigma_k)}.
-$$  
+$$\mathbb{P}(y = c \mid X = x) = \frac{\pi_c f_c(x; \mu_c, \Sigma_c)}{ \sum\limits_{k=0}^{m-1} \pi_k f_k(x; \mu_k, \Sigma_k)}.$$  
 
 Il suffit maintenant d'estimer les paramètres, $\pi_c =  {\mathbb{P}(y = c)}$, $\mu_c$ et $\Sigma_c$ pour pouvoir calculer un estimateur de $\mathbb{P}(y = c \mid X = x)$ : 
 $$
