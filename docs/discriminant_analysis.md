@@ -21,17 +21,17 @@ On note aussi : $$\pi_c = {\mathbb{P}(y = c)}.$$
 
 Et on sait que :
 
-$$
+```math
 \begin{align*}
     \mathbb{P}(X = x) 
     &= \sum\limits_{k=0}^{m-1} \mathbb{P}(y=k) \mathbb{P}(X=x \mid y = k). \\[10pt]
     & = \sum\limits_{k=0}^{m-1} \pi_k f_k(x; \mu_k, \Sigma_k).\\
 \end{align*}
-$$
+```
 
 Et donc, d'après le [**théorème de Bayes**](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Bayes), on sait que :
 
-$$
+```math
 \begin{align*}
     &
     \mathbb{P}(X = x \mid y = c) = \frac{\mathbb{P}(y = c \mid X = x) \mathbb{P}(X = x)}{\mathbb{P}(y = c)}.
@@ -39,15 +39,19 @@ $$
     \Longleftrightarrow \hspace{3mm} &
     \mathbb{P}(y = c \mid X = x) = \frac{\mathbb{P}(X = x \mid y = c) \mathbb{P}(y = c)}{\mathbb{P}(X = x)}.
 \end{align*}
-$$
+```
 
 D'où :
-$$\mathbb{P}(y = c \mid X = x) = \frac{\pi_c f_c(x; \mu_c, \Sigma_c)}{ \sum\limits_{k=0}^{m-1} \pi_k f_k(x; \mu_k, \Sigma_k)}.$$  
+
+```math
+\mathbb{P}(y = c \mid X = x) = \frac{\pi_c f_c(x; \mu_c, \Sigma_c)}{ \sum\limits_{k=0}^{m-1} \pi_k f_k(x; \mu_k, \Sigma_k)}.
+```
 
 Il suffit maintenant d'estimer les paramètres, $\pi_c =  {\mathbb{P}(y = c)}$, $\mu_c$ et $\Sigma_c$ pour pouvoir calculer un estimateur de $\mathbb{P}(y = c \mid X = x)$ : 
-$$
+
+```math
 \hat{\mathbb{P}}(y = c \mid X = x) = \frac{\hat{\pi}_c f_c(x; \hat{\mu}_c, \hat{\Sigma}_c)}{ \sum\limits_{k=0}^{m-1} \hat{\pi}_k f_k(x; \hat{\mu}_k, \hat{\Sigma}_k)}.
-$$
+```
 
 ## Linear Discriminant Analysis (LDA)
 
@@ -61,16 +65,16 @@ Comme, $\forall c \in \{0, \dots, m-1\}$,
 
 Alors, on doit estimer : $(m-1) + mp + \frac{p(p+1)}{2}$ paramètres.
 
-### Estimation des $\pi_c$ (priors)
+### Estimation des probabilités à priori (priors)
 
-On note $N_c = \sum\limits_{i=1}^{n} \mathbb{1}_{y=c}$, on a donc $\sum\limits_{c=0}^{m-1} N_c = n$.
+On note $N_c = \sum\limits_{i=1}^{n} \mathbb{1}\_{y=c}$, on a donc $\sum\limits_{c=0}^{m-1} N_c = n$.
 
 On estime $\pi_c = \mathbb{P}(y = c)$ par :
 $$\hat{\pi}_c = \frac{N_c}{n}.$$
 
 C'est la proportion de $y=c$ dans notre notre échantillon.
 
-### Estimation des $\mu_c$ (means)
+### Estimation des moyennes (means)
 
 On note :
 - $\mu_{c} \in \mathbb{R}^p$.
@@ -80,11 +84,13 @@ On note :
 Le maximum de vraisemblance et la methode des moments
 donnent les mêmes estimateurs :
 
-$$\hat{\mu}_{c} = \frac{1}{N_c} \sum\limits_{i=1}^{n} X_i \mathbb{1}_{y=c}.$$
+```math
+\hat{\mu}_{c} = \frac{1}{N_c} \sum\limits_{i=1}^{n} X_i \mathbb{1}_{y=c}.
+```
 
 C'est la moyenne empirique quand $y=c$.
 
-### Estimation de $\Sigma$ (covariance matrix)
+### Estimation de la matrice de covariance (covariance matrix)
 
 [On utilise l’estimateur de la méthode des moments qui est sans biais (contrairement à l’estimateur du maximum de vraisemblance)](https://en.wikipedia.org/wiki/Estimation_of_covariance_matrices). Et on utilise aussi la méthode de la [**pooled variance**](https://en.wikipedia.org/wiki/Pooled_variance) qui est une méthode pour estimer la variance d'un échantillon de plusieurs populations (une population pour chaque valeur de $y$).
 
@@ -98,15 +104,19 @@ $$\hat{\Sigma} = \frac{1}{n-m} \sum\limits_{c=0}^{m-1} \left[ \sum\limits_{i=1}^
 
 Chacune des valeurs de l'estimation de $\mu_c$ est prise en compte dans l'estimateur.
 
-### Estimateur LDA de $P( y=1 \mid X=x)$
+### Estimateur LDA
 
 On a :
 
-$$\begin{align*}
+```math
+\begin{align*}
 \hat{\mathbb{P}}(y = c \mid X = x) 
 &= \frac{\hat{\pi}_c f_c(x; \hat{\mu}_c, \hat{\Sigma}_c)}{ \sum\limits_{k=0}^{m-1} \hat{\pi}_k f_k(x; \hat{\mu}_k, \hat{\Sigma}_k)}. \\
 &= \frac{\frac{\hat{\pi}_c}{(2 \pi)^{p/2} \lvert \hat{\Sigma} \lvert ^{1/2}} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_c)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_c))}{\sum\limits_{k=0}^{m-1} \frac{\hat{\pi}_k}{(2 \pi)^{p/2} \lvert \hat{\Sigma} \lvert ^{1/2}} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_k)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_k))}.
-\end{align*}$$
+\end{align*}
+```
 
 Et donc, notre estimateur **LDA** de $P( y=c \mid X=x)$ est :
-$$\hat{\mathbb{P}}(y = c \mid X = x)  = \frac{\hat{\pi}_c \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_c)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_c))}{\sum\limits_{k=0}^{m-1} \hat{\pi}_k \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_k)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_k))}.$$
+```math
+\hat{\mathbb{P}}(y = c \mid X = x)  = \frac{\hat{\pi}_c \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_c)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_c))}{\sum\limits_{k=0}^{m-1} \hat{\pi}_k \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_k)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_k))}.
+```
