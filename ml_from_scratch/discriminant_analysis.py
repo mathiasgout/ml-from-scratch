@@ -28,12 +28,12 @@ class LinearDiscriminantAnalysis(BaseModel):
         # Means and pooled covariance matrices
         _means = []
         _pooled_covs = []
-        for c in self.classes_:
-            Xc = X[y == c, :]
-            _means.append(Xc.mean(axis=0))
+        for k in self.classes_:
+            Xk = X[y == k, :]
+            _means.append(Xk.mean(axis=0))
             _pooled_covs.append(
-                np.cov(Xc, rowvar=False, bias=True) * Xc.shape[0]
-            )  # mutiply by Xc sample size (Xc.shape[0]) for pooled cov calculation
+                np.cov(Xk, rowvar=False, bias=True) * Xk.shape[0]
+            )  # mutiply by Xk sample size (Xk.shape[0]) for pooled cov calculation
 
         self.means_ = np.array(_means)
 
