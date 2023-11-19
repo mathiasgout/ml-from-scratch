@@ -123,3 +123,10 @@ Et donc, notre estimateur **LDA** de $P( Y=k \mid X=x)$ est :
 ```math
 \hat{\mathbb{P}}(Y = k \mid X = x)  = \frac{\hat{\pi}_k \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_k)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_k))}{\sum\limits_{l=1}^{K} \hat{\pi}_l \hspace{1mm} \text{exp}(-\frac{1}{2}(x-\hat{\mu}_l)^{T} \hat{\Sigma}^{-1} (x-\hat{\mu}_l))}.
 ```
+
+On peut aussi montrer (je ne sais pas faire la démonstration) que :
+$$
+log \hspace{1mm} \hat{\mathbb{P}}(Y = k \mid X = x) = x^T \hat{\Sigma}^{-1} \hat{\mu}_k - \frac{1}{2} \hat{\mu}_k \hat{\Sigma}^{-1} \hat{\mu}_k + log \hat{\pi}_k + cst.
+$$
+
+où $cst$ est un terme constant.
